@@ -8,6 +8,7 @@
 vagrant up
 ```
 
+Notice: after create vm, you should setup ssh-key yourself.
 
 ## rke-cluster.yaml
 
