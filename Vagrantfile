@@ -13,16 +13,18 @@ Vagrant.configure("2") do |config|
       # change suitable yourself network
       node.vm.network "public_network", ip: "192.168.1.20#{i}"
       node.vm.network "private_network", ip: "192.168.90.1#{i}"
-      
+
       node.vm.provider :libvirt do |libvirt|
-        # setup vm name
-        libvirt.name = "kube-node#{i}"
-
-        # setup vm memory
+        libvirt.host = "kube-node#{i}"
         libvirt.memory = 2048
-
-        # setup vm cpu core num
         libvirt.cpus = 1
+        libvirt.uri = 'qemu+unix:///system'
+        libvirt.driver = 'kvm'
+      end
+      node.vm.provider :virtualbox do |v|
+        v.name = "kube-node#{i}"
+        v.memory = 2048
+        v.cpus = 1
       end
       # node.vm.synced_folder "/synced_folder", "/home/vagrant/share"
 

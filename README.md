@@ -1,11 +1,5 @@
 # vagrant-rke-cluster
 
-## libvirt
-
-[libvirt](https://github.com/vagrant-libvirt/vagrant-libvirt)
-
-Notice: install libvirt depends first.
-
 ## Vagrantfile
 
 [vagrant](https://www.vagrantup.com/)
@@ -22,4 +16,14 @@ Notice: after create vm, you should setup ssh-key yourself.
 
 ```
 rke up --config rke-cluster.yaml
+```
+
+## use libvirt
+
+[libvirt](https://github.com/vagrant-libvirt/vagrant-libvirt)
+
+Notice: install libvirt depends first.
+
+```
+vagrant plugin install vagrant-libvirt
 ```
