@@ -11,8 +11,8 @@ Vagrant.configure("2") do |config|
       node.vm.box = "centos/7"
       node.vm.hostname="kube-node#{i}"
       # change suitable yourself network
-      node.vm.network "public_network", ip: "192.168.1.20#{i}"
-      node.vm.network "private_network", ip: "192.168.90.1#{i}"
+      node.vm.network "public_network", :ip => "192.168.1.20#{i}", :dev => 'eth0', :bridge => 'eth0'
+      node.vm.network "private_network", :ip => "192.168.90.1#{i}"
 
       node.vm.provider :libvirt do |libvirt|
         libvirt.host = "kube-node#{i}"
@@ -32,7 +32,7 @@ Vagrant.configure("2") do |config|
         # sudo yum update
         curl -fsSL https://get.docker.com -o get-docker.sh
         sudo sh get-docker.sh
-        sudo usermod -aG docker ${USER}
+        sudo usermod -aG docker vagrant
         sudo systemctl start docker.service
         sudo systemctl enable docker.service
       SHELL
