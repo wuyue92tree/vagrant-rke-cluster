@@ -10,21 +10,24 @@ Vagrant.configure("2") do |config|
     config.vm.define "kube-node#{i}" do |node|
       node.vm.box = "centos/7"
       node.vm.hostname="kube-node#{i}"
+      # change suitable yourself network
+      node.vm.network "public_network", ip: "192.168.1.20#{i}"
       node.vm.network "private_network", ip: "192.168.90.1#{i}"
-      node.vm.provider "virtualbox" do |v|
+      
+      node.vm.provider :libvirt do |libvirt|
         # setup vm name
-        v.name = "kube-node#{i}"
+        libvirt.name = "kube-node#{i}"
 
         # setup vm memory
-        v.memory = 2048
+        libvirt.memory = 2048
 
         # setup vm cpu core num
-        v.cpus = 1
+        libvirt.cpus = 1
       end
       # node.vm.synced_folder "/synced_folder", "/home/vagrant/share"
 
       node.vm.provision "shell", inline: <<-SHELL
-        sudo yum update
+        # sudo yum update
         curl -fsSL https://get.docker.com -o get-docker.sh
         sudo sh get-docker.sh
         sudo usermod -aG docker ${USER}

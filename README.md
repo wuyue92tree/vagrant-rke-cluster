@@ -1,5 +1,11 @@
 # vagrant-rke-cluster
 
+## libvirt
+
+[libvirt](https://github.com/vagrant-libvirt/vagrant-libvirt)
+
+Notice: install libvirt depends first.
+
 ## Vagrantfile
 
 [vagrant](https://www.vagrantup.com/)
