@@ -15,6 +15,8 @@ Notice: after create vm, you should setup ssh-key yourself.
 [rke download](https://rancher.com/docs/rke/v0.1.x/en/installation/#download-the-rke-binary)
 
 ```
+# use `rke config` can create a config friendly.
+
 rke up --config rke-cluster.yaml
 ```
 
