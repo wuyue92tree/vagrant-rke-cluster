@@ -11,16 +11,16 @@ Vagrant.configure("2") do |config|
       node.vm.box = "centos/7"
       node.vm.hostname="kube-node#{i}"
       # change suitable yourself network
-      node.vm.network "public_network", :ip => "192.168.1.20#{i}", :dev => 'eth0', :bridge => 'eth0'
+      node.vm.network "public_network", :ip => "192.168.1.20#{i}", :bridge => 'eth0'
       node.vm.network "private_network", :ip => "192.168.90.1#{i}"
 
-      node.vm.provider :libvirt do |libvirt|
-        libvirt.host = "kube-node#{i}"
-        libvirt.memory = 2048
-        libvirt.cpus = 1
-        libvirt.uri = 'qemu+unix:///system'
-        libvirt.driver = 'kvm'
-      end
+      # node.vm.provider :libvirt do |libvirt|
+      #   libvirt.host = "kube-node#{i}"
+      #   libvirt.memory = 2048
+      #   libvirt.cpus = 1
+      #   libvirt.uri = 'qemu+unix:///system'
+      #   libvirt.driver = 'kvm'
+      # end
       node.vm.provider :virtualbox do |v|
         v.name = "kube-node#{i}"
         v.memory = 2048
